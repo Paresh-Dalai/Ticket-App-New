@@ -1,0 +1,9 @@
+
+
+.welcome_users{
+    display:flex;
+    justify-content: center;
+    text-align: center;
+    text-decoration: wavy;
+    text-shadow: 0lvi;
+}

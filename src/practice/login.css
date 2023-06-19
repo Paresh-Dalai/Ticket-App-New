@@ -1,0 +1,122 @@
+
+
+
+.total_page{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  }
+.heading{
+   font-family:'Times New Roman', Times, serif;
+   font-style:italic;
+   font-weight :700;;
+   font-size :2rem;
+   text-align: center;
+   margin-top: 2rem;
+   letter-spacing: 2px;
+   background: linear-gradient(to left,
+                    violet,
+                    indigo,
+                    blue,
+                    green,
+                    yellow,
+                    orange,
+                    red);
+          -webkit-background-clip: text;
+            color: transparent;
+ 
+}
+  .main_container {
+    width: 32rem;
+    height: 40rem;
+    display: flex;
+    color: bisque;
+    justify-content: center;
+    flex-direction: column;
+    margin: 1rem 3rem;
+    padding: 20px;
+    background-color: #131610;
+    border: 1px solid #44dd15;
+    border-radius: 6rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+    /* width:2rem;
+    padding: 2rem;
+    height: 15rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction:column;
+    border: 2px solid rebeccapurple;
+    */
+  }
+  form{
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction:column;
+  }
+
+
+  h2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .form-group {
+    margin-bottom: 5px;
+   
+  }
+  .form-group_2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .form-group label {
+    display: block;
+    margin-bottom: 7px;
+    font-weight: bold;
+  }
+
+  .form-group input {
+    width: 20rem;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  .form-group button {
+    margin: 1rem 1rem;
+    width: 20rem;
+    padding: 10px;
+    background-color: #4caf50;
+    
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .signup_logIn_button{
+    width: 15rem;
+    padding: 8px;
+    background-color: #4caf50;
+    display: flex;
+    justify-content: center;
+    border-radius: 2rem;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .form-group button:hover {
+    background-color: #45e2cd;
+  } 
+
+  .message{
+     color: darkgoldenrod;
+     display: flex;
+     justify-content: center;
+     margin-top: 10px;
+  }
