@@ -1,0 +1,17 @@
+
+
+.Typewritting{
+   
+    letter-spacing: 2px;
+    color: beige;
+    
+}
+
+.Upper_container{
+  
+    width: 100vw;
+    background-color: rgb(10, 9, 9);
+    border: 2px dotted red;
+    text-align: center;
+    color: rgb(192, 218, 240);
+}

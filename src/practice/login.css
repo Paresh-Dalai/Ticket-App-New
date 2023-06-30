@@ -7,10 +7,10 @@
   flex-direction: row;
   }
 .heading{
-   font-family:'Times New Roman', Times, serif;
-   font-style:italic;
+   font-family:'Courier New', Courier, monospace;
+   font-style:normal;
    font-weight :700;;
-   font-size :2rem;
+   font-size :4rem;
    text-align: center;
    margin-top: 2rem;
    letter-spacing: 2px;

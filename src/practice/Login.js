@@ -35,6 +35,8 @@ function LoginComponent () {
         localStorage.setItem("Token", data.accessToken);
         localStorage.setItem("UserName", data.name);
         localStorage.setItem("UserType", data.userTypes);
+        localStorage.setItem("UserId" , data.userId);
+
         setMessage("Success");
         console.log("Data is " + JSON.stringify(data));
         navigate(`/${data.userTypes}`);
@@ -45,33 +47,34 @@ function LoginComponent () {
 
 
 
-    // const login = (e) =>{
-    //     e.preventDefault()
-    //     const data = {
-    //         userId: userId,
-    //         password: password,
-    //     }
-    //     userLogin(data).then((res) => {
-    //         console.log("our login data is " + JSON.stringify(res.data))
-    //               console.log(" cngrts !!! Login is successful")
-    //         setMessage("Login is successful")
-    //     }).catch((error) => {
-    //         console.log("Error occured while signing in " + JSON.stringify(error))
-    //         setMessage(JSON.stringify(error.message))
-    //     })
-    //     if (data.accessToken) {
-    //         localStorage.setItem("Token", data.accessToken);
-    //         localStorage.setItem("UserName", data.name);
-    //         localStorage.setItem("UserType", data.userTypes);
-    //         setMessage("Success");
-    //         console.log("Data is " + JSON.stringify(data));
-    //         navigate(`/${data.userTypes}`);
-    //       } else {
-    //         setMessage("login fail");
-    //       }
+  //   const loginFn = (e) => {
+  //     e.preventDefault()
+  //     const data = {
+  //         userId: userId,
+  //         password: password,
+  //     }
 
-    //     console.log("our Login data is " + JSON.stringify(data))
-    // }
+  //     userLogin(data).then((response) => {
+  //         localStorage.setItem("name", response.data.name);
+  //         localStorage.setItem("userId", response.data.userId);
+  //         localStorage.setItem("email", response.data.email);
+  //         localStorage.setItem("userTypes", response.data.userTypes);
+  //         localStorage.setItem("userStatus", response.data.userStatus);
+  //         localStorage.setItem("token", response.data.accessToken);
+  //         if (response.data.userTypes === "CUSTOMER") navigate("/customer");
+  //         else if (response.data.userTypes === "ENGINEER") navigate("/engineer");
+  //         else if (response.data.userTypes === "ADMIN") navigate("/admin");
+  //         else navigate("/");
+  //         console.log("Login data is " + JSON.stringify(response.data))
+  //         console.log("Login is successful")
+  //         setMessage("Login is successful")
+  //     }).catch((error) => {
+  //         console.log("Error occured during login " + JSON.stringify(error))
+  //         setMessage(JSON.stringify(error.message))
+  //     })
+
+  //     console.log("Login data is " + JSON.stringify(data))
+  // }
 
 
     // const signUp = (e) => {

@@ -1,0 +1,93 @@
+.upper_container{
+    background-color: black;
+    color: darkgray;
+    padding: 1.5rem;
+    position: sticky;
+    top: 2px;
+}
+
+
+.upper_row_boxes{
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.first_box,.second_box,.Third_box {
+    margin-top: 1rem;
+    text-align: center;
+    height: 15rem;
+    width: 15rem;
+    background-color: black;
+    color: bisque;
+    border: 2px dotted salmon ;
+    border-radius: 5rem;
+    padding: 2rem;
+}
+.ticket_raising{
+    display: flex;
+    justify-content:flex-end;
+    margin-right: 3rem;
+    
+}
+
+.ticketRaise_buttons_raise{
+    background-color: green;
+    color: rgb(240, 240, 188);
+    width: 7rem;
+    margin-left: 3rem;
+}
+
+.ticketRaise_buttons_logout{
+    background-color: rgb(228, 30, 23);
+    color: rgb(240, 240, 188);
+    width: 7rem;
+    margin-left: 3rem;
+}
+.modal_section{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.message_section{
+    text-align: center;
+}
+
+.Material{
+    width: 60rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 12rem;
+}
+
+
+.Animation {
+    font-family :Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 800;
+    font-size: 40px;
+    text-align: center;
+    
+    
+}
+
+
+#heading{
+    
+    font-style:italic;
+    
+  
+  
+    margin-top: 2rem;
+    letter-spacing: 2px;
+    background: linear-gradient(to left,
+                     rgb(219, 216, 32),
+                     rgb(165, 64, 236),
+                     rgb(6, 6, 207),
+                     rgb(168, 7, 47),
+                     rgb(82, 226, 39),
+                     rgb(241, 158, 4),
+                     rgb(44, 17, 17));
+           -webkit-background-clip: text;
+             color: transparent;
+  
+ }

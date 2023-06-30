@@ -6,6 +6,9 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Admin from "./practice/Pages/Admin";
 import Customer from "./practice/Pages/Customer";
 import Engineer from "./practice/Pages/Engineer";
+import DataComponent from './tableCreate';
+import SimpleAction from './tableCreate';
+
 
 function App() {
   return (
@@ -23,6 +26,11 @@ function App() {
       </Routes>
       
     </BrowserRouter>
+
+
+  //  <DataComponent/>
+
+  // <SimpleAction/>
   );
 }
 
