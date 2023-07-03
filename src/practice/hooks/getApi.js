@@ -62,15 +62,62 @@ export async function createTicket (body) {
 
 export function fetchTickets () {
 
-    const Tickets =  axios.get(`${URL}/crm/app/v1/tickets/getAllTickets` , {
+    try{
+        const Tickets =  axios.get(`${URL}/crm/app/v1/tickets` , {
          
-       headers : {
-            "x-access-token" : localStorage.getItem("Token")
-       }
-       
-    })
-   
-    console.log(Tickets)
-    return Tickets;
+            headers : {
+                 "x-access-token" : localStorage.getItem("Token")
+            }
+           
+         })
+         
+         console.log(Tickets)
+         return Tickets;
+
+    }catch(err){
+        console.log(err.message)
+    }
+    
     
 }
+
+export async function notificationApi(data){
+    return await axios.post(`${URL}/crm/app/v1/notificationSend`, data, {
+        headers:{
+            'x-access-token' : localStorage.getItem("Token")
+        }
+    })
+}
+
+
+
+export async function sendMail(body) {
+    try {
+        
+        let { data }= await axios.post("https://notification-service-1ggi.onrender.com/ticketNotificationService/api/v1/notification", body)
+        return data
+    } catch (err) {
+        console.log(err.message)
+    }
+} 
+
+
+
+ export async function userDetails(userId) {
+  
+  try {
+    let headers = {
+      headers: {
+        'x-access-token': localStorage.getItem('Token')
+      }
+    }
+    // let data  = await axios.get(`https://notification-service-1ggi.onrender.com/ticketNotificationService/api/v1/notifications/${userId}`,headers)
+    let {data}  = await axios.get(URL+`/crm/api/v1/users/${userId}`,headers)
+    return data
+  } catch (err) {
+    console.log(err.message)
+  }
+}
+
+
+

@@ -188,7 +188,9 @@ async function fetchTicketData () {
         if(e.target.name === "description"){
             currentSelectedTicket.description = e.target.value
         }else if(e.target.name === "status"){
-            currentSelectedTicket.status = e.target.status
+            currentSelectedTicket.status = e.target.value
+        }else if(e.target.name === "priority"){
+            currentSelectedTicket.priority = e.target.value
         }
 
         updateCurrentSelectedTicket(Object.assign({}, currentSelectedTicket))
@@ -278,7 +280,7 @@ async function fetchTicketData () {
                 actions={[
                     {
                   
-                       icon : ()=> <Button type="button">Edit</Button>,
+                      icon : ()=> <Button type="button">Edit</Button>,
                       tooltip: "Edit Ticket",
                        onClick: (e, rowData) => {
                          editTicket(rowData);
@@ -321,14 +323,14 @@ async function fetchTicketData () {
                         type = "text" 
                         value={Description}
                         onChange={(e) => setDescription(e.target.value)}
-                        name="title" required/>
+                        name="description" required/>
 
                         <label className="label label-md input-group-text">Ticket-Priority</label>
                         <input className="form-control" 
                         type = "text" 
                         value={TicketPriority}
                         onChange={(e) => setTicketPriority(e.target.value)}
-                        name="title" 
+                        name="priority" 
                         required/>
 
                         <label className="label label-md input-group-text">Status</label>
@@ -336,7 +338,7 @@ async function fetchTicketData () {
                         type = "text" 
                         value={Status}
                         onChange={(e) => setStatus(e.target.value)}
-                        name="title" required/>
+                        name="status" required/>
                     </div>
 
                     <div className="d-flex justify-content-end">

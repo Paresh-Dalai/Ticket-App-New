@@ -1,0 +1,299 @@
+
+
+ function countStatus () {
+                     
+                     let pendingCount = 0;
+                     let openCount = 0;
+                     let closeCount = 0;
+                     for(let i = 0 ; i < res.data.length ; i++){
+                        //  if(res.data[0].status == "PENDING" || res.data[1].status == "PENDING" || res.data[2].status == "PENDING" 
+                        //  || res.data[3].status == "PENDING" || res.data[4].status == "PENDING" || res.data[5].status == "PENDING"
+                        //  || res.data[6].status == "PENDING" || res.data[7].status == "PENDING" || res.data[8].status == "PENDING"){
+                            if(res.data[0].status && res.data[0].status == "PENDING"){
+                             pendingCount++
+                             console.log(pendingCount)
+                             localStorage.setItem("pending" , pendingCount)
+                             return pendingCount;
+                            }
+                        //  } else if (res.data[0].status == "OPEN" || res.data[1].status == "OPEN"|| res.data[2].status == "OPEN" 
+                        //  || res.data[3].status == "OPEN" || res.data[4].status == "OPEN" || res.data[5].status == "OPEN"
+                        //  || res.data[6].status == "OPEN" || res.data[7].status == "OPEN" || res.data[8].status == "OPEN"){
+                        //      openCount++
+                        //      localStorage.setItem("opened" , openCount)
+                        //      return openCount;
+                             
+                        //  } else if (res.data[0].status == "CLOSED" || res.data[1].status == "CLOSED"|| res.data[2].status == "CLOSED" 
+                        //  || res.data[3].status == "CLOSED" || res.data[4].status == "CLOSED" || res.data[5].status == "CLOSED"
+                        //  || res.data[6].status == "CLOSED" || res.data[7].status == "CLOSED" || res.data[8].status == "CLOSED"){
+                        //     closeCount++
+                        //     localStorage.setItem("closed" , closeCount)
+                        //     return closeCount;
+                          
+                        //  }
+                     }
+           
+          
+          
+                }
+                countStatus ()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+
+// import './users.css' ;
+// import React, { useEffect, useState } from "react";
+// import { useNavigate } from "react-router-dom";
+
+// function Customer() {
+
+//   let [user, setUser] = useState({name: "", userType: ""});
+
+//    const navigate = useNavigate();
+
+//   try {
+//     useEffect(() => {
+//       let token = localStorage.getItem("Token");
+  
+//       if (token) {
+//         let name = localStorage.getItem("UserName");
+//         let type = localStorage.getItem("UserType");
+  
+//         if (name && type && type == "CUSTOMER") {
+//           setUser({
+//             name: name,
+//             userType: type,
+//           });
+//         } else {
+//           navigate("/");
+//         }
+//       } else {
+//         navigate("/");
+//       }
+//     }, []);
+//   } catch(error){
+//       console.log(JSON.stringify(error))
+//   }
+  
+
+//   return (
+//     <h1 className="welcome_users">
+//       Hello {user?.name} as a {user.userType} welcome to our portal
+//     </h1>
+//   );
+// }
+
+// export default Customer;
+
+
+
+import MaterialTable from "@material-table/core"
+import { useState, useEffect } from "react";
+import { fetchApi , createTicket} from "../hooks/getApi";
+import { Modal , Button } from "react-bootstrap";
+import './Customer.css'
+
+
+function Customer(){
+    const [ticketDetails, setTicketDetails] = useState([]);
+    const [message , setMessage] = useState("")
+    const [TicketModel , setTicketModel] = useState(false)
+    const [TicketPriority , setTicketPriority] = useState('')
+    const [Status , setStatus] = useState("")
+    const [Description , setDescription] = useState("")
+    const [Title , setTitle] = useState("")
+    const [TicketMessage , setTicketMessage] = useState("")
+
+    const columns = [
+        {
+            title: "ID",
+            field: "_id"
+        },
+        {
+            title: "TITLE",
+            field: "title"
+        },
+        {
+            title: "DESCRIPTION",
+            field: "description"
+        },
+        {
+            title: "ASSIGNEE",
+            field: "assignee"
+        },
+        {
+            title: "PRIORITY",
+            field: "ticketPriority"
+        },
+        {
+            title: "STATUS",
+            field: "status"
+        }
+    ]
+
+    const TicketCreation = async (e) => {
+
+        e.preventDefault();
+        const body = {
+            status : Status,
+            description : Description,
+            title : Title,
+            ticketPriority : TicketPriority,
+            assignee : "eng_01"
+        }
+
+      await createTicket(body).then((res) => {
+             console.log("Ticket data is " + JSON.stringify(res.data))
+             setTicketMessage("A ticket is created successfully")
+             setTicketModel(false)
+        })
+
+        console.log("ticket body is " + body)
+    }
+  
+
+    useEffect(() => {
+
+        async function fetchTicketData () {
+         
+            await fetchApi()
+              
+              .then((res) => {
+      
+                setTicketDetails(res.data)
+                console.log(res.data)
+                // if(res.data[0].status) {
+                //   localStorage.setItem("Status" , res.data[0].status)
+                // }
+               
+                 })
+              
+              .catch((err) => {
+                  console.log("error occured while fetching data" + JSON.stringify(err))
+                  setMessage(err.message)
+              })
+          }
+         
+        fetchTicketData ();
+        
+
+    }, [])
+
+
+
+    return(
+      <>
+      <div className="container mt-3">
+                <h3 className="text-center text-success">Welcome, {localStorage.getItem("UserName")}</h3>
+     </div>
+            <p className="text-center text-muted">Take a look at all your tickets below!</p>
+            <h2 className="text-center text-muted"> facing any issue ? you can raise a ticket by clicking on Raise Ticket</h2>
+      <div className="upper_row_boxes">
+      
+          <div className="first_box">
+            <h2>User_Id</h2>
+            <h3>{localStorage.getItem("UserId")}</h3>
+          </div>
+
+          
+      </div>
+
+      
+
+      <div className="ticket_raising">
+          <button className="ticketRaise_buttons" onClick={()=>setTicketModel(true)}>Raise Ticket</button>
+      </div>
+
+        <div className="bg-light vh-100">
+         <div className="Material">
+            <MaterialTable 
+                title="Tickets raised by you"
+                columns={columns}
+                data={ticketDetails}
+            />
+         </div>
+        <hr/>
+        <p className="message_section">{message}</p>
+
+
+
+    {TicketModel ? (
+
+        
+        <Modal 
+            show={TicketModel}
+            onHide={() => setTicketModel(false)}
+            
+            centered
+            backdrop="static"
+        >
+            
+            <Modal.Header closeButton>Create a new ticket</Modal.Header>
+            <Modal.Body>
+                <form onSubmit={TicketCreation}>
+                    <div className="modal_section">
+                        <label className="label label-md input-group-text">Title</label>
+                        <input className="form-control" 
+                        type = "text" 
+                        value={Title}
+                        onChange={(e) => setTitle(e.target.value)}
+                        name="title" required/>
+
+                        <label className="label label-md input-group-text">Description</label>
+                        <input className="form-control" 
+                        type = "text" 
+                        value={Description}
+                        onChange={(e) => setDescription(e.target.value)}
+                        name="title" required/>
+
+                        <label className="label label-md input-group-text">Ticket-Priority</label>
+                        <input className="form-control" 
+                        type = "text" 
+                        value={TicketPriority}
+                        onChange={(e) => setTicketPriority(e.target.value)}
+                        name="title" 
+                        required/>
+
+                        <label className="label label-md input-group-text">Status</label>
+                        <input className="form-control" 
+                        type = "text" 
+                        value={Status}
+                        onChange={(e) => setStatus(e.target.value)}
+                        name="title" required/>
+                    </div>
+
+                    <div className="d-flex justify-content-end">
+                        <Button onClick={() => setTicketModel(false)} variant="secondary" className="m-1">
+                            Cancel
+                        </Button>
+
+                        <Button type="submit" variant="success" className="m-1">
+                            Create
+                        </Button>
+                    </div>
+                    <h3>{TicketMessage}</h3>
+                </form>
+            </Modal.Body>
+        </Modal>
+       
+        ) : null}
+        
+        </div>
+    
+        
+        </>
+    )
+}
+
+export default Customer;
