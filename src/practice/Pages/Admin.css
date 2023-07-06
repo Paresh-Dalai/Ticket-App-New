@@ -27,3 +27,57 @@
     background-color: cadetblue;
     color: bisque;
 }
+
+.cards_container{
+    display: flex;
+    justify-content:space-evenly;
+    flex-direction: row;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.Open_status,.Pending_status,.userId_box,.Closed_status{
+    border: 2px double red;
+    background-color: burlywood;
+    color: black;
+    width: 12rem;
+    border-radius: 2rem;
+}
+.showButtons{
+    display: flex;
+    justify-content:flex-end;
+    flex-direction: row;
+    padding: 1.5rem;
+  
+
+}
+.showUserTable{
+    margin-right: 2rem;
+    width: 7rem;
+    height: fit-content;
+    background-color: rgb(28, 167, 28);
+    color: bisque;
+}
+
+.Material{
+    display: flex;
+    justify-content: center;
+}
+.togglers{
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 6rem;
+    margin-bottom: 0;
+    margin-top: 2rem;
+}
+.anchors{
+    /* padding: 1.5rem; */
+    
+    margin-left: 1.5rem;
+    
+}
+
+.anchors:hover{
+    color: rgb(94, 161, 55);
+    cursor: pointer;
+}

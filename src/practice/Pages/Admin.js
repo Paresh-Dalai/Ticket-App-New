@@ -6,12 +6,16 @@ import { useNavigate } from "react-router-dom";
 import { Modal , Button } from "react-bootstrap";
 import Typewriter from "typewriter-effect";
 import { fetchTickets , updateTicketApi } from "../hooks/getApi";
+import AllUsers from "./allUsersInAdmin";
 import "./Admin.css"
 function Admin () {
 
+  const [ticketTable , setticketTable] = useState(true)
   const [ticketDetails , setticketDetails] = useState([])
   const [errorMessage , seterrorMessage] = useState("")
   const [editTicketModel , setEditTicketModel] = useState(false)
+
+  const [UsersTable , setUsersTable] = useState(false)
 
   const [currentSelectedTicket, setCurrentSelectedTicket] = useState({})
 
@@ -28,6 +32,20 @@ function Admin () {
           setticketDetails(res.data)
           
           console.log(res.data)
+          let statusCount = {}
+          for(let i = 0 ; i < res.data.length ; i ++){
+             let status = res.data[i].status
+
+             if(statusCount[status]){
+                 statusCount[status]++
+             } else{
+                 statusCount[status] = 1
+             }
+          }
+          console.log(statusCount)
+          localStorage.setItem("openStatus" , statusCount.OPEN);
+          localStorage.setItem("pendingStatus" , statusCount.PENDING);
+          localStorage.setItem("closedStatus" , statusCount.CLOSED);
         })
        
        } catch (err) {
@@ -55,7 +73,7 @@ function Admin () {
     console.log("Selected ticket details is " + JSON.stringify(currentSelectedTicket))
 }
 
-const onTicketUpdate = (e) => {
+  const onTicketUpdate = (e) => {
     if(e.target.name === "description"){
         currentSelectedTicket.description = e.target.value
     }else if(e.target.name === "status"){
@@ -67,7 +85,7 @@ const onTicketUpdate = (e) => {
     updateCurrentSelectedTicket(Object.assign({}, currentSelectedTicket))
 }
 
-const updateTicket = (e) => {
+  const updateTicket = (e) => {
     e.preventDefault()
 
     updateTicketApi(currentSelectedTicket._id, currentSelectedTicket)
@@ -133,7 +151,16 @@ function Animation_Text () {
       </div>
   );
 }
- 
+
+function toggling () {
+    setUsersTable(true)
+    setticketTable(false)
+}
+function toggling_2() {
+    setticketTable(true)
+    setUsersTable(false)
+}
+
     
   return (
 
@@ -143,28 +170,81 @@ function Animation_Text () {
        <h1 className="Typewritting">{Animation_Text()}</h1>
        <h3>Hello Admin !!! </h3>
        <h3> welcome back to this Page...You Can control Tickets raised by Customers from this page...</h3>
+       <div className="showButtons">
+         <button className="showUserTable" onClick={() => toggling() }>User Table</button>
+       <button className="showUserTable" onClick={() => toggling_2()}>Tickets</button>
+
+       </div>
+      
+     </div>
+
+     <div className="cards_container">
+        <div className="userId_box">
+            <h2>userId</h2>
+            <hr/>
+            <h3>{localStorage.getItem("UserId")}</h3>
+        </div>
+        <div className="Open_status">
+            <h2>OPEN:</h2>
+            <hr/>
+            <h3>{localStorage.getItem("openStatus")}</h3>
+        </div>
+        <div className="Pending_status">
+        
+            <h2>PENDING:</h2>
+            <hr/>
+            <h3>{localStorage.getItem("pendingStatus")}</h3>
+            {/* <div class="spinner-grow text-danger"></div> */}
+        </div>
+        <div className="Closed_status">
+            <h2>CLOSED:</h2>
+            <hr/>
+            <h3>{localStorage.getItem("closedStatus")}</h3>
+        </div>
 
      </div>
 
 
      <div className="bg-light vh-100">
+    
+    <div className="togglers">
+        <a className="anchors" onClick={() => toggling()}><h4>Users</h4></a>
+        <a className="anchors" onClick={() => toggling_2()}><h4>Tickets</h4></a>
+    </div>
+        
          <div className="Material">
-            <MaterialTable 
+           
+
+         {ticketTable ? (
+
+           <MaterialTable 
                 title="Tickets raised by customers"
                 columns={columns}
                 data={ticketDetails}
                 actions={[
-                    {
-                  
-                      icon : ()=> <Button type="button">Edit</Button>,
-                      tooltip: "Edit Ticket",
-                       onClick: (e, rowData) => {
-                         editTicket(rowData);
-                       },
-                    },
-                  ]}
-                
-            />
+    {
+  
+      icon : ()=> <Button type="button">Edit</Button>,
+      tooltip: "Edit Ticket",
+       onClick: (e, rowData) => {
+         editTicket(rowData);
+       },
+    },
+  ]}
+
+/>
+
+) : null}
+
+
+{UsersTable ? (
+        <AllUsers/>
+    ) : null}
+            
+
+
+
+   
 
 {editTicketModel ? (
 

@@ -70,9 +70,10 @@ export function fetchTickets () {
             }
            
          })
-         
          console.log(Tickets)
          return Tickets;
+        
+        
 
     }catch(err){
         console.log(err.message)
@@ -119,5 +120,33 @@ export async function sendMail(body) {
   }
 }
 
+export async function getAllUsers () {
+    try{
 
+        const allUsers = axios.get(`${URL}/crm/api/v1/users`)
+
+        console.log(allUsers)
+        return allUsers;
+        
+    }catch(error){
+         console.log(error.message)
+    }
+   
+
+}
+
+export async function updateUserDetails (userId,data) {
+    try{
+       
+     let userData = axios.put(`${URL}/crm/api/v1/users/${userId}`, data , {
+        headers:{
+            'x-access-token' : localStorage.getItem("Token")
+        }})
+      console.log(userData)
+      return userData;
+    }catch(errror){
+        console.log(errror.message)
+    }
+
+}
 
