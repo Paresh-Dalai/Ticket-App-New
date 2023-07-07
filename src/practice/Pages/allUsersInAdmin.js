@@ -5,12 +5,15 @@
 
 import MaterialTable from "@material-table/core"
 import React, { useEffect, useState } from "react";
-import { getAllUsers , updateUserDetails} from "../hooks/getApi";
+import { getAllUsers , updateUserDetails ,getUsersByUserType} from "../hooks/getApi";
 import { Modal , Button } from "react-bootstrap";
 
 
 
 function AllUsers() {
+
+    const [userType, setUserType] = useState('');
+    
 
    
     const [userDetails , setuserDetails] = useState([])
@@ -20,16 +23,41 @@ function AllUsers() {
 
     const updateCurrentSelectedTicket = (data) => setCurrentSelectedTicket(data)
 
-    const fetchAllUsers = async () => {
-         try{
-            await getAllUsers()
-            .then((response) => {
-                 setuserDetails(response.data)
-            })
-         }catch(error){
-             console.log(error.message)
-         }
-    }
+    // const fetchAllUsers = async () => {
+    //      try{
+    //         await getAllUsers()
+    //         .then((response) => {
+    //              setuserDetails(response.data)
+    //         })
+    //      }catch(error){
+    //          console.log(error.message)
+    //      }
+    // }
+
+
+    const fetchData = async () => {
+        try {
+          await getUsersByUserType(userType)
+          .then((response) => {
+            setuserDetails(response.data); 
+            console.log(response.data)
+          })
+          
+        } catch (error) {
+          console.error('Error fetching data:', error);
+         
+        }
+      };
+
+      const handleInputChange = (event) => {
+        setUserType(event.target.value); 
+      };
+    
+      const handleFormSubmit = (event) => {
+        event.preventDefault(); 
+        fetchData(); 
+      };
+
     const editTicket = (ticketDetail) => {
 
         const ticket = {
@@ -64,18 +92,16 @@ function AllUsers() {
         .then((res) => {
             setEditUserUpdateModel(false)
             
-            fetchAllUsers()
+           fetchData()
         }).catch((err) => {
             console.log(err.message)
         })
     }
 
-
-    
-
-    useEffect(() =>{
-        fetchAllUsers()
-    },[])
+    // useEffect(() =>{
+    //     fetchAllUsers()
+       
+    // },[])
 
     const columns = [
         {
@@ -103,6 +129,23 @@ function AllUsers() {
 
         <>
             <div className="bg-light vh-100">
+
+            <div className="UserType" >
+            
+            <form style={{display:"flex" , justifyContent:"space-evenly" , flexDirection:"row"}} onSubmit={handleFormSubmit}>
+            <label>
+              User Type:
+              <select name="userType_options" id="userTypes" onChange={handleInputChange}>
+                                    <option value="CUSTOMER">CUSTOMER</option>
+                                    <option value="ENGINEER">ENGINEER</option>
+                                    
+                                </select> 
+            </label>
+            <button type="submit" style={{backgroundColor:"green" , border:"2px solid red" , borderRadius:"2px" , color:"white"}}>get Users</button>
+            </form>
+            </div>
+
+               
               {/* <div className="Material"> */}
               <div style={{display:"flex" , justifyContent:"center"}}>
 

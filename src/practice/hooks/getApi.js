@@ -150,3 +150,13 @@ export async function updateUserDetails (userId,data) {
 
 }
 
+export async function getUsersByUserType (UserType) {
+
+     try{
+         const foundUsers = axios.get(`${URL}/crm/api/v1/users/${UserType}`)
+         console.log(foundUsers)
+         return foundUsers;
+     }catch(err){
+         console.log(err.message)
+     }
+}

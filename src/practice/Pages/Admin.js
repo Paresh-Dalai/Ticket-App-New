@@ -173,6 +173,7 @@ function toggling_2() {
        <div className="showButtons">
          <button className="showUserTable" onClick={() => toggling() }>User Table</button>
        <button className="showUserTable" onClick={() => toggling_2()}>Tickets</button>
+       
 
        </div>
       
