@@ -130,12 +130,12 @@ function AllUsers() {
         <>
             <div className="bg-light vh-100">
 
-            <div className="UserType" >
+            <div className="UserType">
             
-            <form style={{display:"flex" , justifyContent:"space-evenly" , flexDirection:"row"}} onSubmit={handleFormSubmit}>
+            <form style={{display:"flex"  , justifyContent:"flex-end" , flexDirection:"row" }} onSubmit={handleFormSubmit}>
             <label>
               User Type:
-              <select name="userType_options" id="userTypes" onChange={handleInputChange}>
+              <select style={{backgroundColor:"goldenrod"}} name="userType_options" id="userTypes" onChange={handleInputChange}>
                                     <option value="CUSTOMER">CUSTOMER</option>
                                     <option value="ENGINEER">ENGINEER</option>
                                     
