@@ -160,3 +160,52 @@ export async function getUsersByUserType (UserType) {
          console.log(err.message)
      }
 }
+
+export async function fetchLeads () {
+     
+    try {
+
+        const Leads = axios.get(`${URL}/crm/app/v1/Leads` , {
+          
+            headers : {
+                 "x-access-token" : localStorage.getItem("Token")
+                       }
+            
+         })
+    
+         console.log(Leads)
+         return Leads;
+
+    } catch (error) {
+         console.log("Error occured while fetching Leads... " + JSON.stringify(error.message))
+    }
+    
+}
+
+export async function createLead (LeadData) {
+     
+    try {
+        let Lead = axios.post(`${URL}/crm/app/v1/createLeads` , LeadData)
+        console.log(Lead)
+        return Lead;
+    } catch (error) {
+        console.log("error occured in creating Lead..." + JSON.stringify(error.message))
+    }
+
+}
+
+export async function updateLead (leadId,LeadData) {
+      
+    try {
+        const updateData = axios.put(`${URL}/crm/app/v1/Leads/${leadId}` , LeadData , {
+            headers:{
+                'x-access-token' : localStorage.getItem("Token")
+            }})
+
+            console.log(updateData)
+            return updateData;
+    }catch(err) {
+        console.log("error occures while updating a Lead... " + err.message)
+    }
+     
+}

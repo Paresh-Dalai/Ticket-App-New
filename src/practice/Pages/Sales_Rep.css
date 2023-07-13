@@ -1,0 +1,26 @@
+
+
+.Material_table{
+    display: flex;
+    justify-content:center;
+    width:50vw;
+    margin-left: 20rem;
+    margin-top: 2rem;
+}
+.first_row{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background-color: rgb(17, 16, 15);
+    color: blanchedalmond;
+}
+.second_row{
+    display: flex;
+    justify-content: flex-end;
+    padding: 2rem;
+    background-color: black;
+}
+.Material_table:hover{
+    background-color: black;
+    color: bisque;
+}

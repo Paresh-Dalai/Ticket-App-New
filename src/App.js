@@ -8,6 +8,7 @@ import Customer from "./practice/Pages/Customer";
 import Engineer from "./practice/Pages/Engineer";
 import DataComponent from './tableCreate';
 import SimpleAction from './tableCreate';
+import { Sales_Rep } from './practice/Pages/Sales_rep';
 
 
 function App() {
@@ -15,7 +16,7 @@ function App() {
     <BrowserRouter>
 
         <Routes>
-               <Route path="/" 
+        <Route path="/" 
                element={<LoginComponent />} />
         <Route path="/admin" 
                element={<Admin />} />
@@ -23,6 +24,8 @@ function App() {
                element={<Customer />} />
         <Route path="/engineer" 
                element={<Engineer />} />
+        <Route path='/sales_rep'
+               element={<Sales_Rep/>}    />    
       </Routes>
       
     </BrowserRouter>
